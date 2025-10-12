@@ -63,6 +63,57 @@
   opacity: 0.7;
 }
 
+.country-code-trigger {
+  background-color: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgb(30, 41, 59);
+  color: rgb(226, 232, 240);
+  transition: all 0.2s ease-in-out;
+}
+
+.country-code-trigger:hover:not(:disabled) {
+  background-color: rgba(15, 23, 42, 0.85);
+  border-color: rgb(56, 189, 248);
+}
+
+.country-code-trigger:focus-visible {
+  border-color: rgb(56, 189, 248);
+  box-shadow: 0 0 0 1px rgb(56, 189, 248);
+}
+
+.country-code-value {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.country-code-icon {
+  color: rgb(148, 163, 184);
+}
+
+.country-code-menu {
+  background-color: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  color: rgb(226, 232, 240);
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+.country-code-option {
+  border-color: rgba(30, 41, 59, 0.65);
+  color: inherit;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.country-code-option:hover,
+.country-code-option:focus-visible {
+  background-color: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.country-code-name {
+  color: rgb(148, 163, 184);
+}
+
 /* Custom Scrollbar for Country Code Dropdown */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;

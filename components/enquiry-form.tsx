@@ -236,25 +236,26 @@ export function EnquiryForm() {
                 <Button
                   type="button"
                   onClick={toggleCountryDropdown}
-                  className="enquiry-form-button flex items-center gap-1 px-3 min-w-[90px]"
+                  variant="outline"
+                  className="country-code-trigger flex items-center gap-1 px-3 min-w-[100px]"
                   disabled={isPhoneVerified}
                 >
                   <span className="text-lg">{selectedCountryCode.flag}</span>
-                  <span>{selectedCountryCode.code}</span>
-                  <ChevronDown className="h-4 w-4 ml-1" />
+                  <span className="country-code-value">{selectedCountryCode.code}</span>
+                  <ChevronDown className="h-4 w-4 ml-1 country-code-icon" />
                 </Button>
                 {isCountryDropdownOpen && !isPhoneVerified && (
-                  <div className="absolute top-12 left-0 z-10 w-64 max-h-60 overflow-y-auto bg-slate-800 border border-slate-700 rounded-md shadow-lg custom-scrollbar">
+                  <div className="absolute top-12 left-0 z-10 w-64 max-h-60 overflow-y-auto country-code-menu custom-scrollbar">
                     {countryCodes.map((country) => (
                       <button
                         key={country.code}
                         type="button"
-                        className="w-full text-left px-4 py-2.5 hover:bg-slate-700 flex items-center gap-3 border-b border-slate-700 last:border-b-0"
+                        className="country-code-option w-full text-left px-4 py-2.5 flex items-center gap-3 border-b last:border-b-0"
                         onClick={() => selectCountryCode(country)}
                       >
                         <span className="text-xl">{country.flag}</span>
                         <span className="font-medium">{country.code}</span>
-                        <span className="text-slate-400 text-sm ml-auto">{country.name}</span>
+                        <span className="text-sm ml-auto country-code-name">{country.name}</span>
                       </button>
                     ))}
                   </div>

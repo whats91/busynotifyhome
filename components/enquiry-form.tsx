@@ -6,9 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MessageSquare, Send, Check, AlertCircle, Phone, ChevronDown } from "lucide-react";
+import { MessageSquare, Send, Check, AlertCircle, ChevronDown } from "lucide-react";
 import { toast } from "sonner";
-import "@/styles/enquiry-form.css";
 
 // Common country codes with their flags
 const countryCodes = [
@@ -188,20 +187,20 @@ export function EnquiryForm() {
   };
 
   return (
-    <Card className="enquiry-form-card">
+    <Card className="bg-slate-900/60 border border-slate-800 shadow-2xl backdrop-blur-xl">
       <CardHeader className="p-4 sm:p-6">
-        <CardTitle className="enquiry-form-title flex items-center gap-2">
-          <MessageSquare className="h-5 w-5 enquiry-form-icon" aria-hidden="true" />
+        <CardTitle className="flex items-center gap-2 text-xl font-semibold text-white">
+          <MessageSquare className="h-5 w-5 text-emerald-400" aria-hidden="true" />
           Send us a Message
         </CardTitle>
-        <CardDescription className="enquiry-form-description">
+        <CardDescription className="text-sm text-slate-400">
           Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
         </CardDescription>
       </CardHeader>
       <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
-        <form onSubmit={handleSubmit} className="enquiry-form space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-slate-300">Name</Label>
+            <Label htmlFor="name" className="text-sm font-medium text-slate-200">Name</Label>
             <Input
               id="name"
               name="name"
@@ -210,12 +209,12 @@ export function EnquiryForm() {
               placeholder="Your name"
               required
               autoComplete="name"
-              className="enquiry-form-input"
+              className="bg-slate-900/50 border-slate-800 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-0"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-slate-300">Email</Label>
+            <Label htmlFor="email" className="text-sm font-medium text-slate-200">Email</Label>
             <Input
               id="email"
               name="email"
@@ -225,37 +224,37 @@ export function EnquiryForm() {
               placeholder="your.email@example.com"
               required
               autoComplete="email"
-              className="enquiry-form-input"
+              className="bg-slate-900/50 border-slate-800 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-0"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone" className="text-slate-300">Phone Number</Label>
-            <div className="flex gap-2">
-              <div className="relative">
+            <Label htmlFor="phone" className="text-sm font-medium text-slate-200">Phone Number</Label>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <div className="relative sm:w-auto">
                 <Button
                   type="button"
                   onClick={toggleCountryDropdown}
                   variant="outline"
-                  className="country-code-trigger flex items-center gap-1 px-3 min-w-[100px]"
+                  className="flex items-center gap-1 min-w-[110px] rounded-md border border-slate-800 bg-slate-900/50 px-3 py-2 text-slate-100 transition hover:border-emerald-400 hover:bg-slate-900/70 focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-0"
                   disabled={isPhoneVerified}
                 >
                   <span className="text-lg">{selectedCountryCode.flag}</span>
-                  <span className="country-code-value">{selectedCountryCode.code}</span>
-                  <ChevronDown className="h-4 w-4 ml-1 country-code-icon" />
+                  <span className="font-semibold tracking-wide text-slate-100">{selectedCountryCode.code}</span>
+                  <ChevronDown className="ml-1 h-4 w-4 text-slate-400" />
                 </Button>
                 {isCountryDropdownOpen && !isPhoneVerified && (
-                  <div className="absolute top-12 left-0 z-10 w-64 max-h-60 overflow-y-auto country-code-menu custom-scrollbar">
+                  <div className="absolute top-12 left-0 z-20 w-64 max-h-60 overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/90 shadow-2xl backdrop-blur-lg">
                     {countryCodes.map((country) => (
                       <button
                         key={country.code}
                         type="button"
-                        className="country-code-option w-full text-left px-4 py-2.5 flex items-center gap-3 border-b last:border-b-0"
+                        className="flex w-full items-center gap-3 border-b border-slate-800/70 px-4 py-2.5 text-left text-sm text-slate-100 transition-colors last:border-b-0 hover:bg-slate-800/60 focus-visible:bg-slate-800/60 focus-visible:outline-none"
                         onClick={() => selectCountryCode(country)}
                       >
                         <span className="text-xl">{country.flag}</span>
-                        <span className="font-medium">{country.code}</span>
-                        <span className="text-sm ml-auto country-code-name">{country.name}</span>
+                        <span className="font-semibold">{country.code}</span>
+                        <span className="ml-auto text-xs text-slate-400">{country.name}</span>
                       </button>
                     ))}
                   </div>
@@ -270,7 +269,7 @@ export function EnquiryForm() {
                 placeholder="Enter your phone number"
                 required
                 autoComplete="tel"
-                className="enquiry-form-input"
+                className="bg-slate-900/50 border-slate-800 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-0"
                 disabled={isPhoneVerified}
               />
               {!isPhoneVerified ? (
@@ -278,7 +277,7 @@ export function EnquiryForm() {
                   type="button"
                   onClick={handleSendOtp}
                   disabled={isSendingOtp || !formData.phone}
-                  className="enquiry-form-button whitespace-nowrap"
+                  className="whitespace-nowrap bg-slate-900/80 border border-slate-700 text-slate-100 hover:bg-slate-800 hover:text-white transition focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-0 disabled:bg-slate-900/40 disabled:text-slate-500 disabled:border-slate-800/60 disabled:cursor-not-allowed"
                 >
                   {isSendingOtp ? "Sending..." : "Send OTP"}
                 </Button>
@@ -289,7 +288,8 @@ export function EnquiryForm() {
                     setIsPhoneVerified(false);
                     setOtp("");
                   }}
-                  className="enquiry-form-button whitespace-nowrap"
+                  variant="outline"
+                  className="whitespace-nowrap border border-slate-700 text-slate-300 hover:bg-slate-900/60 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-0"
                 >
                   Change
                 </Button>
@@ -299,8 +299,8 @@ export function EnquiryForm() {
 
           {!isPhoneVerified && formData.phone && (
             <div className="space-y-2">
-              <Label htmlFor="otp" className="text-slate-300">OTP</Label>
-              <div className="flex gap-2">
+              <Label htmlFor="otp" className="text-sm font-medium text-slate-200">OTP</Label>
+              <div className="flex flex-col gap-2 sm:flex-row">
                 <Input
                   id="otp"
                   type="text"
@@ -308,13 +308,13 @@ export function EnquiryForm() {
                   onChange={(e) => setOtp(e.target.value)}
                   placeholder="Enter 6-digit OTP"
                   maxLength={6}
-                  className="enquiry-form-input"
+                  className="bg-slate-900/50 border-slate-800 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-0"
                 />
                 <Button
                   type="button"
                   onClick={handleVerifyOtp}
                   disabled={isVerifyingOtp || !otp || otp.length !== 6}
-                  className="enquiry-form-button whitespace-nowrap"
+                  className="whitespace-nowrap bg-slate-900/80 border border-slate-700 text-slate-100 hover:bg-slate-800 hover:text-white transition focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-0 disabled:bg-slate-900/40 disabled:text-slate-500 disabled:border-slate-800/60 disabled:cursor-not-allowed"
                 >
                   {isVerifyingOtp ? "Verifying..." : "Verify OTP"}
                 </Button>
@@ -323,7 +323,7 @@ export function EnquiryForm() {
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="message" className="text-slate-300">Message</Label>
+            <Label htmlFor="message" className="text-sm font-medium text-slate-200">Message</Label>
             <Textarea
               id="message"
               name="message"
@@ -332,14 +332,14 @@ export function EnquiryForm() {
               placeholder="Your message"
               required
               autoComplete="off"
-              className="enquiry-form-input enquiry-form-textarea"
+              className="min-h-[120px] bg-slate-900/50 border-slate-800 text-slate-100 placeholder:text-slate-500 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-0"
             />
           </div>
 
           <Button
             type="submit"
             disabled={loading || !isPhoneVerified}
-            className="enquiry-form-button w-full"
+            className="w-full bg-slate-900/80 border border-slate-700 text-slate-100 hover:bg-slate-800 hover:text-white transition focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-0 disabled:bg-slate-900/40 disabled:text-slate-500 disabled:border-slate-800/60 disabled:cursor-not-allowed"
             title="Send your message"
           >
             {loading ? (

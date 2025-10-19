@@ -339,7 +339,7 @@ export function EnquiryForm() {
           <Button
             type="submit"
             disabled={loading || !isPhoneVerified}
-            className="w-full bg-slate-900/80 border border-slate-700 text-slate-100 hover:bg-slate-800 hover:text-white transition focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-0 disabled:bg-slate-900/40 disabled:text-slate-500 disabled:border-slate-800/60 disabled:cursor-not-allowed"
+            className="w-full bg-slate-900/80 border border-slate-700 text-slate-100 hover:bg-slate-800 hover:text-white transition focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-0 disabled:bg-slate-900/80 disabled:text-slate-100 disabled:border-slate-700 disabled:opacity-100"
             title="Send your message"
           >
             {loading ? (
